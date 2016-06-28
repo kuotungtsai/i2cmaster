@@ -1,0 +1,44 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectDir="C:\CCStudio_v3.1\my280x\i2cmaster\"
+ProjectType=Executable
+CPUFamily=TMS320C28XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="DSP280x_CodeStartBranch.asm"
+Source="DSP280x_DefaultIsr.c"
+Source="DSP280x_GlobalVariableDefs.c"
+Source="DSP280x_I2C.c"
+Source="DSP280x_PieCtrl.c"
+Source="DSP280x_PieVect.c"
+Source="DSP280x_SysCtrl.c"
+Source="DSP280x_usDelay.asm"
+Source="Example280x_I2C_Master.c"
+Source="2808_eZdsp_RAM_lnk.cmd"
+Source="DSP280x_Headers_nonBIOS.cmd"
+
+["Compiler" Settings: "Debug"]
+Options=-g -fr"$(Proj_dir)\Debug" -i"C:\tidcs\c28\DSP280x\v141\DSP280x_headers\include" -d"_DEBUG" -d"LARGE_MODEL" -ml -v28
+
+["Compiler" Settings: "Release"]
+Options=-o3 -fr"$(Proj_dir)\Release" -d"LARGE_MODEL" -ml -v28
+
+["Linker" Settings: "Debug"]
+Options=-c -ecodestart -m".\Debug\i2cslave.map" -o".\Debug\i2cslave.out" -stack0x100 -w -x -l"rts2800_ml.lib"
+
+["Linker" Settings: "Release"]
+Options=-c -m".\Release\i2cslave.map" -o".\Release\i2cslave.out" -w -x
+
+["2808_eZdsp_RAM_lnk.cmd" Settings: "Debug"]
+LinkOrder=1
+
+["2808_eZdsp_RAM_lnk.cmd" Settings: "Release"]
+LinkOrder=1
+
